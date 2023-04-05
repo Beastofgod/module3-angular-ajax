@@ -16,6 +16,11 @@
     <div class="form-group narrow-button">
       <button ng-click="ctrl1.searchThings()" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
+    <ol>
+      <li ng-repeat="item in ctrl1.found">
+        <found-item></found-item>
+      </li>
+    </ol>
 
     <found-items found-items="...." on-remove="...."></found-items>
   </div>

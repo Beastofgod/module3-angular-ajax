@@ -10,18 +10,23 @@
         var ctrl1 = this;
         ctrl1.searchThings = function (){
             ctrl1.found = MenuSearchService.getMatchedMenuItems(ctrl1.searchTerm);
-            ctrl1.found.then(value => console.log(value))
-            cctrl1.found
-            
+            ctrl1.found.then(value => console.log(value));
+            console.log(ctrl1.found);
         }
         
     }
 
-    function foundItems(){
+    function foundItem() {
         var ddo = {
-            template = '{{}}'
-        }
-    }
+          restrict: 'E',
+          scope: {
+            item: '=foundItem',
+            arrayName: '@'
+          },
+          template: '{{item[arrayName].name}} {{item[arrayName].description}} {{item[arrayName].price_small}} {{item[arrayName].price_large}}'
+        };
+        return ddo;
+      }
 
     MenuSearchService.$inject = ['$http'];
     function MenuSearchService($http){
@@ -33,7 +38,6 @@
             }
             return  $http({
                 method: "GET",
-                datatype: 'json',
                 url : ("https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json")
             })
             .then(function (response) {
